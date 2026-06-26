@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 01 · Gerbang Hiragana — あ い う え お</title>
+<style>
+/* ===================================================================
+   Shared stylesheet for the Japanese course.
+   Every lesson & reference doc links this so the whole course
+   looks like one consistent, Tufte-inspired book.
+   =================================================================== */
+
+:root {
+  --ink:       #23201b;   /* main text  */
+  --ink-soft:  #5c554a;   /* secondary  */
+  --paper:     #fdfcf7;   /* background */
+  --rule:      #e4ddcf;   /* hairlines  */
+  --accent:    #c0392b;   /* vermilion (torii / hanko) */
+  --accent-bg: #fbeae7;
+  --good:      #2e7d4f;
+  --good-bg:   #e6f3ea;
+  --bad:       #b23b3b;
+  --bad-bg:    #f8e8e8;
+  --max:       40rem;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --kana:  "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", "MS Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  margin: 0;
+  padding: 3.5rem 1.5rem 6rem;
+}
+
+.wrap { max-width: var(--max); margin: 0 auto; }
+
+/* ---- Headings ---- */
+h1, h2, h3 { line-height: 1.2; font-weight: 700; }
+h1 { font-size: 2.1rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
+h2 {
+  font-size: 1.4rem; margin: 2.6rem 0 .8rem;
+  padding-bottom: .3rem; border-bottom: 1px solid var(--rule);
+}
+h3 { font-size: 1.1rem; margin: 1.8rem 0 .5rem; }
+
+p { margin: 0 0 1.05rem; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(192,57,43,.3); }
+a:hover { border-bottom-color: var(--accent); }
+
+strong { font-weight: 700; }
+em { color: var(--ink-soft); }
+
+/* ---- Eyebrow / course masthead ---- */
+.eyebrow {
+  font-family: var(--kana);
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 .9rem;
+}
+.lead { font-size: 1.12rem; color: var(--ink-soft); margin-bottom: 2rem; }
+
+/* ---- Japanese inline text ---- */
+.jp { font-family: var(--kana); font-feature-settings: "palt"; }
+.romaji { color: var(--ink-soft); font-style: italic; }
+
+/* ---- Kana display cards ---- */
+.kana-grid {
+  display: grid; gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  margin: 1.5rem 0 2rem;
+}
+.kana-card {
+  border: 1px solid var(--rule); border-radius: 10px;
+  background: #fff; padding: 1rem .8rem; text-align: center;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+}
+.kana-card .glyph {
+  font-family: var(--kana); font-size: 3.4rem; line-height: 1.1;
+  color: var(--ink); display: block;
+}
+.kana-card .read { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+.kana-card .hint { font-size: .85rem; color: var(--ink-soft); margin-top: .35rem; }
+
+/* ---- Callouts ---- */
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-bg);
+  padding: .9rem 1.1rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+}
+.callout p:last-child { margin-bottom: 0; }
+.callout .tag {
+  font-family: var(--kana); font-size: .7rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+}
+
+/* ---- Source / primary reading ---- */
+.source {
+  margin: 2rem 0; padding: 1rem 1.2rem;
+  border: 1px solid var(--rule); border-radius: 8px; background: #fff;
+}
+.source .tag {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+
+/* ---- Quiz widget (powered by assets/quiz.js) ---- */
+.quiz { margin: 1.5rem 0; }
+.quiz-q {
+  border: 1px solid var(--rule); border-radius: 10px;
+  background: #fff; padding: 1.1rem 1.2rem; margin-bottom: 1rem;
+}
+.quiz-q .prompt { font-size: 1.05rem; margin-bottom: .8rem; }
+.quiz-q .prompt .big { font-family: var(--kana); font-size: 2.4rem; vertical-align: middle; }
+.quiz-choices { display: flex; flex-wrap: wrap; gap: .5rem; }
+.quiz-choices button {
+  font-family: var(--kana); font-size: 1.05rem;
+  min-width: 3.4rem; padding: .5rem .9rem;
+  border: 1px solid var(--rule); border-radius: 8px;
+  background: var(--paper); color: var(--ink); cursor: pointer;
+  transition: transform .05s ease, background .12s ease;
+}
+.quiz-choices button:hover { background: #fff; transform: translateY(-1px); }
+.quiz-choices button.is-correct { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+.quiz-choices button.is-wrong   { background: var(--bad-bg);  border-color: var(--bad);  color: var(--bad);  }
+.quiz-choices button:disabled { cursor: default; opacity: .9; }
+.quiz-fb { margin-top: .7rem; font-size: .92rem; min-height: 1.2em; }
+.quiz-fb.good { color: var(--good); }
+.quiz-fb.bad  { color: var(--bad); }
+.quiz-score {
+  text-align: center; font-weight: 700; margin-top: .5rem;
+  color: var(--ink-soft); font-size: .95rem;
+}
+
+/* ---- Flip card (self-test reveal) ---- */
+.flip-row { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); margin: 1.3rem 0; }
+.flip {
+  border: 1px solid var(--rule); border-radius: 10px; background: #fff;
+  padding: 1rem .6rem; text-align: center; cursor: pointer; user-select: none;
+}
+.flip .face-front { font-family: var(--kana); font-size: 2.6rem; color: var(--ink); }
+.flip .face-back  { font-size: 1.2rem; font-weight: 700; color: var(--accent); display: none; }
+.flip.revealed .face-front { display: none; }
+.flip.revealed .face-back  { display: block; }
+.flip .mini { font-size: .72rem; color: var(--ink-soft); margin-top: .3rem; }
+
+/* ---- Nav between lessons / reference ---- */
+.nav-links {
+  display: flex; flex-wrap: wrap; gap: .6rem; justify-content: space-between;
+  margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .9rem;
+}
+
+/* ---- Reference table (gojuon chart) ---- */
+table.gojuon { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
+table.gojuon th, table.gojuon td {
+  border: 1px solid var(--rule); padding: .55rem .3rem; text-align: center;
+}
+table.gojuon th { font-size: .75rem; color: var(--ink-soft); background: #faf6ee; font-weight: 700; }
+table.gojuon td .g { font-family: var(--kana); font-size: 1.7rem; display: block; }
+table.gojuon td .r { font-size: .7rem; color: var(--ink-soft); }
+table.gojuon td.lit { background: var(--accent-bg); }
+table.gojuon td.empty { background: #f4f1ea; }
+
+/* ---- Pills / footnotes ---- */
+.pill {
+  display: inline-block; font-family: var(--kana); font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .15rem .6rem; border-radius: 999px;
+  background: var(--accent-bg); color: var(--accent);
+}
+hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+small { color: var(--ink-soft); }
+
+/* ---- Print: make reference docs print beautifully ---- */
+@media print {
+  body { background: #fff; padding: 0; font-size: 12pt; }
+  .quiz, .nav-links, .flip { break-inside: avoid; }
+  a { color: var(--ink); border: none; }
+  .no-print { display: none !important; }
+  table.gojuon td.lit { background: #fff; outline: 2px solid var(--accent); }
+}
+
+</style>
+<script>
+/* ===================================================================
+   Reusable lesson widgets. Linked by every lesson.
+   Two zero-config behaviours, wired up on DOMContentLoaded:
+
+   1. .quiz  — multiple-choice recall with instant feedback + score.
+       <div class="quiz" data-good="Tepat!" data-bad="Belum, coba lagi.">
+         <div class="quiz-q" data-answer="a">
+           <div class="prompt">...</div>
+           <div class="quiz-choices">
+             <button data-choice="a">a</button> ...
+           </div>
+           <div class="quiz-fb"></div>
+         </div>
+       </div>
+
+   2. .flip  — click-to-reveal self-test card.
+       <div class="flip"><span class="face-front">あ</span>
+                         <span class="face-back">a</span></div>
+   =================================================================== */
+
+(function () {
+  "use strict";
+
+  function initQuiz(quiz) {
+    var questions = quiz.querySelectorAll(".quiz-q");
+    var goodMsg = quiz.getAttribute("data-good") || "Betul!";
+    var badMsg = quiz.getAttribute("data-bad") || "Hampir! Itu jawaban lain.";
+    var total = questions.length;
+    var answered = 0, correct = 0;
+
+    var score = document.createElement("div");
+    score.className = "quiz-score";
+    score.textContent = "Skor: 0 / " + total;
+    quiz.appendChild(score);
+
+    questions.forEach(function (q) {
+      var answer = q.getAttribute("data-answer");
+      var fb = q.querySelector(".quiz-fb");
+      var buttons = q.querySelectorAll(".quiz-choices button");
+      var locked = false;
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          if (locked) return;
+          locked = true;
+          var choice = btn.getAttribute("data-choice");
+          var isRight = choice === answer;
+
+          buttons.forEach(function (b) {
+            b.disabled = true;
+            if (b.getAttribute("data-choice") === answer) b.classList.add("is-correct");
+          });
+          if (!isRight) btn.classList.add("is-wrong");
+
+          if (fb) {
+            fb.textContent = isRight ? goodMsg : badMsg + " (jawabannya disorot hijau)";
+            fb.className = "quiz-fb " + (isRight ? "good" : "bad");
+          }
+
+          answered++;
+          if (isRight) correct++;
+          score.textContent = "Skor: " + correct + " / " + total;
+          if (answered === total) {
+            score.textContent += correct === total
+              ? "  — sempurna! 🎌"
+              : "  — ulangi yang merah ya.";
+          }
+        });
+      });
+    });
+  }
+
+  function initFlip(card) {
+    card.addEventListener("click", function () {
+      card.classList.toggle("revealed");
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".quiz").forEach(initQuiz);
+    document.querySelectorAll(".flip").forEach(initFlip);
+  });
+})();
+
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">日本語 · Lesson 01 · Hiragana</p>
+  <h1>Gerbang Hiragana: 5 Bunyi yang Membuka Semuanya</h1>
+  <p class="lead">Tiap kata Jepang dibangun dari 5 bunyi vokal ini. Kuasai <span class="jp">あ い う え お</span> hari ini, dan kamu udah pegang kunci buat <em>seluruh</em> sistem tulisan Jepang.</p>
+
+  <h2>Kenapa ini langkah pertama</h2>
+  <p>Misi kamu: baca manga &amp; teks Jepang, dan enjoy liburan ke Jepang. Dua-duanya butuh satu hal yang sama — <strong>bisa baca hiragana</strong>. Hiragana itu alfabet dasar Jepang (46 karakter inti). Papan nama stasiun, menu ramen, balon dialog manga — semua mulai dari sini.</p>
+  <p>Dan kabar baiknya, hiragana itu <strong>fonetik 100%</strong>: satu karakter = satu bunyi, selalu. Nggak ada drama "kenapa <em>read</em> sama <em>read</em> beda bunyi" kayak di bahasa Inggris. Apa yang kamu lihat, itu yang kamu baca.</p>
+
+  <div class="callout">
+    <span class="tag">Keuntungan orang Indonesia 🇮🇩</span>
+    <p>Vokal Jepang <span class="jp">あいうえお</span> bunyinya <strong>hampir sama persis</strong> kayak <strong>a-i-u-e-o</strong> di bahasa Indonesia. Orang yang bahasa ibunya Inggris harus susah payah belajar bunyi ini — kamu udah punya dari lahir. Ini start yang nggak adil… buat kamu. Manfaatin.</p>
+  </div>
+
+  <h2>Sistem bunyinya (gojūon)</h2>
+  <p>Hiragana disusun rapi di tabel namanya <strong>gojūon</strong> (五十音, "lima puluh bunyi"). Baris paling atas adalah 5 vokal murni. Semua baris lain (k-, s-, t-, …) cuma vokal ini ditempelin konsonan: か = <em>k</em>+<em>a</em>, き = <em>k</em>+<em>i</em>, dst. Jadi begitu 5 ini nempel, sisa 40 karakter tinggal nyusul gampang.</p>
+
+  <h2>5 vokal kamu</h2>
+  <p>Lihat karakternya, baca bunyinya keras-keras, sambungin ke kata Indonesia yang kamu udah tahu:</p>
+
+  <div class="kana-grid">
+    <div class="kana-card"><span class="glyph">あ</span><span class="read">a</span><span class="hint">kayak <strong>a</strong> di "<strong>a</strong>pa"</span></div>
+    <div class="kana-card"><span class="glyph">い</span><span class="read">i</span><span class="hint">kayak <strong>i</strong> di "<strong>i</strong>kan"</span></div>
+    <div class="kana-card"><span class="glyph">う</span><span class="read">u</span><span class="hint">kayak <strong>u</strong> di "<strong>u</strong>ntuk"</span></div>
+    <div class="kana-card"><span class="glyph">え</span><span class="read">e</span><span class="hint">kayak <strong>e</strong> di "<strong>e</strong>nak"</span></div>
+    <div class="kana-card"><span class="glyph">お</span><span class="read">o</span><span class="hint">kayak <strong>o</strong> di "<strong>o</strong>bat"</span></div>
+  </div>
+
+  <h3>Jembatan keledai buat ngingetin bentuknya</h3>
+  <p>Bunyinya gampang; yang perlu nempel itu <em>bentuk coretannya</em>. Pakai gambaran ini:</p>
+  <ul>
+    <li><span class="jp" style="font-size:1.4rem">あ</span> <strong>a</strong> — kayak huruf <strong>A</strong> yang lagi gaya, ada ekor melingkar di bawah.</li>
+    <li><span class="jp" style="font-size:1.4rem">い</span> <strong>i</strong> — dua garis berdiri, kayak angka <strong>11</strong> atau dua orang ngantri.</li>
+    <li><span class="jp" style="font-size:1.4rem">う</span> <strong>u</strong> — kayak orang lagi nunduk sopan bilang "<strong>u</strong>hh".</li>
+    <li><span class="jp" style="font-size:1.4rem">え</span> <strong>e</strong> — kayak burung <strong>e</strong>ksotis lagi ngangkat kepala.</li>
+    <li><span class="jp" style="font-size:1.4rem">お</span> <strong>o</strong> — mirip あ tapi ada "bandul" nggantung di kanan atas.</li>
+  </ul>
+
+  <div class="callout">
+    <span class="tag">Awas jebakan</span>
+    <p><span class="jp">あ</span> (a) dan <span class="jp">お</span> (o) mirip banget — ini paling sering ketuker pemula. Bedain gini: <strong>お</strong> punya titik/bandul nggantung di kanan; <strong>あ</strong> nggak. Pelototin sekarang biar nanti otomatis.</p>
+  </div>
+
+  <h2>Tes balik dulu (buka kalau perlu)</h2>
+  <p>Klik tiap kartu buat lihat bunyinya. Coba tebak <em>sebelum</em> dibuka — usaha ngingetnya itu yang bikin nempel di memori jangka panjang.</p>
+  <div class="flip-row">
+    <div class="flip"><span class="face-front">え</span><span class="face-back">e</span><span class="mini">klik</span></div>
+    <div class="flip"><span class="face-front">お</span><span class="face-back">o</span><span class="mini">klik</span></div>
+    <div class="flip"><span class="face-front">あ</span><span class="face-back">a</span><span class="mini">klik</span></div>
+    <div class="flip"><span class="face-front">う</span><span class="face-back">u</span><span class="mini">klik</span></div>
+    <div class="flip"><span class="face-front">い</span><span class="face-back">i</span><span class="mini">klik</span></div>
+  </div>
+
+  <h2>Kuis: baca tanpa contekan</h2>
+  <p>Sekarang yang beneran. Nggak ada urutan, nggak ada petunjuk. Ini <strong>retrieval practice</strong> — ngambil dari memori, bukan ngenalin. Ini yang bikin ilmunya beneran nyangkut.</p>
+
+  <div class="quiz" data-good="Tepat! 🎯" data-bad="Belum pas.">
+    <div class="quiz-q" data-answer="o">
+      <div class="prompt">Karakter <span class="big">お</span> dibaca…</div>
+      <div class="quiz-choices">
+        <button data-choice="a">a</button>
+        <button data-choice="o">o</button>
+        <button data-choice="u">u</button>
+        <button data-choice="e">e</button>
+      </div>
+      <div class="quiz-fb"></div>
+    </div>
+
+    <div class="quiz-q" data-answer="u">
+      <div class="prompt">Karakter <span class="big">う</span> dibaca…</div>
+      <div class="quiz-choices">
+        <button data-choice="i">i</button>
+        <button data-choice="e">e</button>
+        <button data-choice="u">u</button>
+        <button data-choice="a">a</button>
+      </div>
+      <div class="quiz-fb"></div>
+    </div>
+
+    <div class="quiz-q" data-answer="a">
+      <div class="prompt">Karakter <span class="big">あ</span> dibaca…</div>
+      <div class="quiz-choices">
+        <button data-choice="o">o</button>
+        <button data-choice="a">a</button>
+        <button data-choice="e">e</button>
+        <button data-choice="i">i</button>
+      </div>
+      <div class="quiz-fb"></div>
+    </div>
+
+    <div class="quiz-q" data-answer="e">
+      <div class="prompt">Bunyi <strong>"e"</strong> (kayak di "enak") ditulis…</div>
+      <div class="quiz-choices">
+        <button data-choice="i">い</button>
+        <button data-choice="e">え</button>
+        <button data-choice="a">あ</button>
+        <button data-choice="u">う</button>
+      </div>
+      <div class="quiz-fb"></div>
+    </div>
+
+    <div class="quiz-q" data-answer="i">
+      <div class="prompt">Bunyi <strong>"i"</strong> (kayak di "ikan") ditulis…</div>
+      <div class="quiz-choices">
+        <button data-choice="o">お</button>
+        <button data-choice="u">う</button>
+        <button data-choice="i">い</button>
+        <button data-choice="e">え</button>
+      </div>
+      <div class="quiz-fb"></div>
+    </div>
+  </div>
+
+  <h2>Kemenangan kecil hari ini 🏆</h2>
+  <p>Kata Jepang asli pertama kamu, pakai <em>cuma</em> karakter yang baru kamu pelajari:</p>
+  <ul>
+    <li><span class="jp" style="font-size:1.5rem">あおい</span> <span class="romaji">aoi</span> — "biru". Baca pelan: <strong>a-o-i</strong>. Kamu barusan baca bahasa Jepang. 🎉</li>
+    <li><span class="jp" style="font-size:1.5rem">いえ</span> <span class="romaji">ie</span> — "rumah". <strong>i-e</strong>.</li>
+    <li><span class="jp" style="font-size:1.5rem">うえ</span> <span class="romaji">ue</span> — "atas". <strong>u-e</strong>.</li>
+  </ul>
+
+  <div class="source">
+    <span class="tag">Sumber utama buat hari ini</span>
+    <p><a href="https://www.tofugu.com/japanese/learn-hiragana/" target="_blank" rel="noopener">Tofugu — "Learn Hiragana: The Ultimate Guide"</a>. Panduan gratis paling tepercaya buat hiragana, pakai jembatan keledai gambar. Baca/scan bagian baris vokal buat memperkuat yang barusan kita pelajari. <small>(N5 itu sendiri nggak punya silabus resmi dari <a href="https://www.jlpt.jp/e/" target="_blank" rel="noopener">jlpt.jp</a> — kira-kira ~100 kanji &amp; ~800 kata; kita bangun ke sana pelan-pelan.)</small></p>
+  </div>
+
+  <div class="callout">
+    <span class="tag">Aku guru kamu — tanya aja</span>
+    <p>Ada yang ngeganjel? Bingung bedain あ sama お? Pengin tahu kenapa う bibirnya nggak bunder kayak "u" Inggris? <strong>Tanya langsung ke aku di chat.</strong> Itu gunanya aku — feedback cepat bikin belajar makin nempel.</p>
+  </div>
+
+  <hr>
+  <p><strong>Habis ini ngapain?</strong> Hari ini: ulang kartu flip 2–3 kali sampai kelima-limanya keluar tanpa mikir. Besok kita tambah baris <strong>K</strong> (<span class="jp">か き く け こ</span>) — dan kamu bakal bisa baca kata kayak <span class="jp">あき</span> (musim gugur) sama <span class="jp">こえ</span> (suara). Bilang aja <em>"lanjut"</em> kalau udah siap.</p>
+
+  <nav class="nav-links">
+    <span><span class="pill">Lesson 01</span> &nbsp;Gerbang Hiragana</span>
+    <span><a href="hiragana.html">📖 Tabel Hiragana lengkap →</a></span>
+  </nav>
+
+</div>
+</body>
+</html>

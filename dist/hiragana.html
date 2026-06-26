@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Referensi · Tabel Hiragana Lengkap (Gojūon)</title>
+<style>
+/* ===================================================================
+   Shared stylesheet for the Japanese course.
+   Every lesson & reference doc links this so the whole course
+   looks like one consistent, Tufte-inspired book.
+   =================================================================== */
+
+:root {
+  --ink:       #23201b;   /* main text  */
+  --ink-soft:  #5c554a;   /* secondary  */
+  --paper:     #fdfcf7;   /* background */
+  --rule:      #e4ddcf;   /* hairlines  */
+  --accent:    #c0392b;   /* vermilion (torii / hanko) */
+  --accent-bg: #fbeae7;
+  --good:      #2e7d4f;
+  --good-bg:   #e6f3ea;
+  --bad:       #b23b3b;
+  --bad-bg:    #f8e8e8;
+  --max:       40rem;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --kana:  "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", "MS Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  margin: 0;
+  padding: 3.5rem 1.5rem 6rem;
+}
+
+.wrap { max-width: var(--max); margin: 0 auto; }
+
+/* ---- Headings ---- */
+h1, h2, h3 { line-height: 1.2; font-weight: 700; }
+h1 { font-size: 2.1rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
+h2 {
+  font-size: 1.4rem; margin: 2.6rem 0 .8rem;
+  padding-bottom: .3rem; border-bottom: 1px solid var(--rule);
+}
+h3 { font-size: 1.1rem; margin: 1.8rem 0 .5rem; }
+
+p { margin: 0 0 1.05rem; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(192,57,43,.3); }
+a:hover { border-bottom-color: var(--accent); }
+
+strong { font-weight: 700; }
+em { color: var(--ink-soft); }
+
+/* ---- Eyebrow / course masthead ---- */
+.eyebrow {
+  font-family: var(--kana);
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 .9rem;
+}
+.lead { font-size: 1.12rem; color: var(--ink-soft); margin-bottom: 2rem; }
+
+/* ---- Japanese inline text ---- */
+.jp { font-family: var(--kana); font-feature-settings: "palt"; }
+.romaji { color: var(--ink-soft); font-style: italic; }
+
+/* ---- Kana display cards ---- */
+.kana-grid {
+  display: grid; gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  margin: 1.5rem 0 2rem;
+}
+.kana-card {
+  border: 1px solid var(--rule); border-radius: 10px;
+  background: #fff; padding: 1rem .8rem; text-align: center;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+}
+.kana-card .glyph {
+  font-family: var(--kana); font-size: 3.4rem; line-height: 1.1;
+  color: var(--ink); display: block;
+}
+.kana-card .read { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+.kana-card .hint { font-size: .85rem; color: var(--ink-soft); margin-top: .35rem; }
+
+/* ---- Callouts ---- */
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-bg);
+  padding: .9rem 1.1rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+}
+.callout p:last-child { margin-bottom: 0; }
+.callout .tag {
+  font-family: var(--kana); font-size: .7rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+}
+
+/* ---- Source / primary reading ---- */
+.source {
+  margin: 2rem 0; padding: 1rem 1.2rem;
+  border: 1px solid var(--rule); border-radius: 8px; background: #fff;
+}
+.source .tag {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+
+/* ---- Quiz widget (powered by assets/quiz.js) ---- */
+.quiz { margin: 1.5rem 0; }
+.quiz-q {
+  border: 1px solid var(--rule); border-radius: 10px;
+  background: #fff; padding: 1.1rem 1.2rem; margin-bottom: 1rem;
+}
+.quiz-q .prompt { font-size: 1.05rem; margin-bottom: .8rem; }
+.quiz-q .prompt .big { font-family: var(--kana); font-size: 2.4rem; vertical-align: middle; }
+.quiz-choices { display: flex; flex-wrap: wrap; gap: .5rem; }
+.quiz-choices button {
+  font-family: var(--kana); font-size: 1.05rem;
+  min-width: 3.4rem; padding: .5rem .9rem;
+  border: 1px solid var(--rule); border-radius: 8px;
+  background: var(--paper); color: var(--ink); cursor: pointer;
+  transition: transform .05s ease, background .12s ease;
+}
+.quiz-choices button:hover { background: #fff; transform: translateY(-1px); }
+.quiz-choices button.is-correct { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+.quiz-choices button.is-wrong   { background: var(--bad-bg);  border-color: var(--bad);  color: var(--bad);  }
+.quiz-choices button:disabled { cursor: default; opacity: .9; }
+.quiz-fb { margin-top: .7rem; font-size: .92rem; min-height: 1.2em; }
+.quiz-fb.good { color: var(--good); }
+.quiz-fb.bad  { color: var(--bad); }
+.quiz-score {
+  text-align: center; font-weight: 700; margin-top: .5rem;
+  color: var(--ink-soft); font-size: .95rem;
+}
+
+/* ---- Flip card (self-test reveal) ---- */
+.flip-row { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); margin: 1.3rem 0; }
+.flip {
+  border: 1px solid var(--rule); border-radius: 10px; background: #fff;
+  padding: 1rem .6rem; text-align: center; cursor: pointer; user-select: none;
+}
+.flip .face-front { font-family: var(--kana); font-size: 2.6rem; color: var(--ink); }
+.flip .face-back  { font-size: 1.2rem; font-weight: 700; color: var(--accent); display: none; }
+.flip.revealed .face-front { display: none; }
+.flip.revealed .face-back  { display: block; }
+.flip .mini { font-size: .72rem; color: var(--ink-soft); margin-top: .3rem; }
+
+/* ---- Nav between lessons / reference ---- */
+.nav-links {
+  display: flex; flex-wrap: wrap; gap: .6rem; justify-content: space-between;
+  margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .9rem;
+}
+
+/* ---- Reference table (gojuon chart) ---- */
+table.gojuon { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
+table.gojuon th, table.gojuon td {
+  border: 1px solid var(--rule); padding: .55rem .3rem; text-align: center;
+}
+table.gojuon th { font-size: .75rem; color: var(--ink-soft); background: #faf6ee; font-weight: 700; }
+table.gojuon td .g { font-family: var(--kana); font-size: 1.7rem; display: block; }
+table.gojuon td .r { font-size: .7rem; color: var(--ink-soft); }
+table.gojuon td.lit { background: var(--accent-bg); }
+table.gojuon td.empty { background: #f4f1ea; }
+
+/* ---- Pills / footnotes ---- */
+.pill {
+  display: inline-block; font-family: var(--kana); font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .15rem .6rem; border-radius: 999px;
+  background: var(--accent-bg); color: var(--accent);
+}
+hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+small { color: var(--ink-soft); }
+
+/* ---- Print: make reference docs print beautifully ---- */
+@media print {
+  body { background: #fff; padding: 0; font-size: 12pt; }
+  .quiz, .nav-links, .flip { break-inside: avoid; }
+  a { color: var(--ink); border: none; }
+  .no-print { display: none !important; }
+  table.gojuon td.lit { background: #fff; outline: 2px solid var(--accent); }
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">日本語 · Referensi · Hiragana</p>
+  <h1>Tabel Hiragana (Gojūon)</h1>
+  <p class="lead">Cetak ini dan tempel di dekat meja. Baris yang disorot <span class="pill">merah</span> adalah yang udah kamu pelajari. Baca: tiap sel = <em>satu</em> bunyi, selalu konsisten.</p>
+
+  <h2>46 karakter inti</h2>
+  <p>Dibaca dari kanan-atas ke kiri-bawah secara tradisi, tapi buat belajar, baca tiap baris kiri→kanan: konsonan + vokal.</p>
+
+  <table class="gojuon">
+    <thead>
+      <tr><th></th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>(vokal)</th>
+        <td class="lit"><span class="g">あ</span><span class="r">a</span></td>
+        <td class="lit"><span class="g">い</span><span class="r">i</span></td>
+        <td class="lit"><span class="g">う</span><span class="r">u</span></td>
+        <td class="lit"><span class="g">え</span><span class="r">e</span></td>
+        <td class="lit"><span class="g">お</span><span class="r">o</span></td>
+      </tr>
+      <tr>
+        <th>k</th>
+        <td><span class="g">か</span><span class="r">ka</span></td>
+        <td><span class="g">き</span><span class="r">ki</span></td>
+        <td><span class="g">く</span><span class="r">ku</span></td>
+        <td><span class="g">け</span><span class="r">ke</span></td>
+        <td><span class="g">こ</span><span class="r">ko</span></td>
+      </tr>
+      <tr>
+        <th>s</th>
+        <td><span class="g">さ</span><span class="r">sa</span></td>
+        <td><span class="g">し</span><span class="r">shi</span></td>
+        <td><span class="g">す</span><span class="r">su</span></td>
+        <td><span class="g">せ</span><span class="r">se</span></td>
+        <td><span class="g">そ</span><span class="r">so</span></td>
+      </tr>
+      <tr>
+        <th>t</th>
+        <td><span class="g">た</span><span class="r">ta</span></td>
+        <td><span class="g">ち</span><span class="r">chi</span></td>
+        <td><span class="g">つ</span><span class="r">tsu</span></td>
+        <td><span class="g">て</span><span class="r">te</span></td>
+        <td><span class="g">と</span><span class="r">to</span></td>
+      </tr>
+      <tr>
+        <th>n</th>
+        <td><span class="g">な</span><span class="r">na</span></td>
+        <td><span class="g">に</span><span class="r">ni</span></td>
+        <td><span class="g">ぬ</span><span class="r">nu</span></td>
+        <td><span class="g">ね</span><span class="r">ne</span></td>
+        <td><span class="g">の</span><span class="r">no</span></td>
+      </tr>
+      <tr>
+        <th>h</th>
+        <td><span class="g">は</span><span class="r">ha</span></td>
+        <td><span class="g">ひ</span><span class="r">hi</span></td>
+        <td><span class="g">ふ</span><span class="r">fu</span></td>
+        <td><span class="g">へ</span><span class="r">he</span></td>
+        <td><span class="g">ほ</span><span class="r">ho</span></td>
+      </tr>
+      <tr>
+        <th>m</th>
+        <td><span class="g">ま</span><span class="r">ma</span></td>
+        <td><span class="g">み</span><span class="r">mi</span></td>
+        <td><span class="g">む</span><span class="r">mu</span></td>
+        <td><span class="g">め</span><span class="r">me</span></td>
+        <td><span class="g">も</span><span class="r">mo</span></td>
+      </tr>
+      <tr>
+        <th>y</th>
+        <td><span class="g">や</span><span class="r">ya</span></td>
+        <td class="empty">—</td>
+        <td><span class="g">ゆ</span><span class="r">yu</span></td>
+        <td class="empty">—</td>
+        <td><span class="g">よ</span><span class="r">yo</span></td>
+      </tr>
+      <tr>
+        <th>r</th>
+        <td><span class="g">ら</span><span class="r">ra</span></td>
+        <td><span class="g">り</span><span class="r">ri</span></td>
+        <td><span class="g">る</span><span class="r">ru</span></td>
+        <td><span class="g">れ</span><span class="r">re</span></td>
+        <td><span class="g">ろ</span><span class="r">ro</span></td>
+      </tr>
+      <tr>
+        <th>w</th>
+        <td><span class="g">わ</span><span class="r">wa</span></td>
+        <td class="empty">—</td>
+        <td class="empty">—</td>
+        <td class="empty">—</td>
+        <td><span class="g">を</span><span class="r">wo</span></td>
+      </tr>
+      <tr>
+        <th>n</th>
+        <td><span class="g">ん</span><span class="r">n</span></td>
+        <td class="empty">—</td>
+        <td class="empty">—</td>
+        <td class="empty">—</td>
+        <td class="empty">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Suara "kotor" (dakuten ゛ &amp; handakuten ゜)</h2>
+  <p>Tambahin dua coretan kecil di kanan atas, konsonannya berubah. Nggak ada karakter baru buat dihafal — cuma karakter lama plus tanda.</p>
+
+  <table class="gojuon">
+    <thead><tr><th></th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr></thead>
+    <tbody>
+      <tr><th>g</th>
+        <td><span class="g">が</span><span class="r">ga</span></td><td><span class="g">ぎ</span><span class="r">gi</span></td><td><span class="g">ぐ</span><span class="r">gu</span></td><td><span class="g">げ</span><span class="r">ge</span></td><td><span class="g">ご</span><span class="r">go</span></td></tr>
+      <tr><th>z</th>
+        <td><span class="g">ざ</span><span class="r">za</span></td><td><span class="g">じ</span><span class="r">ji</span></td><td><span class="g">ず</span><span class="r">zu</span></td><td><span class="g">ぜ</span><span class="r">ze</span></td><td><span class="g">ぞ</span><span class="r">zo</span></td></tr>
+      <tr><th>d</th>
+        <td><span class="g">だ</span><span class="r">da</span></td><td><span class="g">ぢ</span><span class="r">ji</span></td><td><span class="g">づ</span><span class="r">zu</span></td><td><span class="g">で</span><span class="r">de</span></td><td><span class="g">ど</span><span class="r">do</span></td></tr>
+      <tr><th>b</th>
+        <td><span class="g">ば</span><span class="r">ba</span></td><td><span class="g">び</span><span class="r">bi</span></td><td><span class="g">ぶ</span><span class="r">bu</span></td><td><span class="g">べ</span><span class="r">be</span></td><td><span class="g">ぼ</span><span class="r">bo</span></td></tr>
+      <tr><th>p</th>
+        <td><span class="g">ぱ</span><span class="r">pa</span></td><td><span class="g">ぴ</span><span class="r">pi</span></td><td><span class="g">ぷ</span><span class="r">pu</span></td><td><span class="g">ぺ</span><span class="r">pe</span></td><td><span class="g">ぽ</span><span class="r">po</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <span class="tag">Cara pakai tabel ini</span>
+    <p>Jangan dihafal sekaligus — itu mustahil dan bikin patah semangat. Tiap lesson kita kuasai <strong>satu baris</strong>. Tabel ini cuma peta biar kamu lihat posisi kita dan ke mana arahnya. Cetak, lalu coret tiap baris yang udah dikuasai.</p>
+  </div>
+
+  <nav class="nav-links no-print">
+    <span><a href="0001-gerbang-hiragana.html">← Lesson 01</a></span>
+    <span><span class="pill">Referensi</span></span>
+  </nav>
+
+</div>
+</body>
+</html>
