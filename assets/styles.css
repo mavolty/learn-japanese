@@ -1,0 +1,183 @@
+/* ===================================================================
+   Shared stylesheet for the Japanese course.
+   Every lesson & reference doc links this so the whole course
+   looks like one consistent, Tufte-inspired book.
+   =================================================================== */
+
+:root {
+  --ink:       #23201b;   /* main text  */
+  --ink-soft:  #5c554a;   /* secondary  */
+  --paper:     #fdfcf7;   /* background */
+  --rule:      #e4ddcf;   /* hairlines  */
+  --accent:    #c0392b;   /* vermilion (torii / hanko) */
+  --accent-bg: #fbeae7;
+  --good:      #2e7d4f;
+  --good-bg:   #e6f3ea;
+  --bad:       #b23b3b;
+  --bad-bg:    #f8e8e8;
+  --max:       40rem;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --kana:  "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Meiryo", "MS Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  margin: 0;
+  padding: 3.5rem 1.5rem 6rem;
+}
+
+.wrap { max-width: var(--max); margin: 0 auto; }
+
+/* ---- Headings ---- */
+h1, h2, h3 { line-height: 1.2; font-weight: 700; }
+h1 { font-size: 2.1rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
+h2 {
+  font-size: 1.4rem; margin: 2.6rem 0 .8rem;
+  padding-bottom: .3rem; border-bottom: 1px solid var(--rule);
+}
+h3 { font-size: 1.1rem; margin: 1.8rem 0 .5rem; }
+
+p { margin: 0 0 1.05rem; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(192,57,43,.3); }
+a:hover { border-bottom-color: var(--accent); }
+
+strong { font-weight: 700; }
+em { color: var(--ink-soft); }
+
+/* ---- Eyebrow / course masthead ---- */
+.eyebrow {
+  font-family: var(--kana);
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 .9rem;
+}
+.lead { font-size: 1.12rem; color: var(--ink-soft); margin-bottom: 2rem; }
+
+/* ---- Japanese inline text ---- */
+.jp { font-family: var(--kana); font-feature-settings: "palt"; }
+.romaji { color: var(--ink-soft); font-style: italic; }
+
+/* ---- Kana display cards ---- */
+.kana-grid {
+  display: grid; gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  margin: 1.5rem 0 2rem;
+}
+.kana-card {
+  border: 1px solid var(--rule); border-radius: 10px;
+  background: #fff; padding: 1rem .8rem; text-align: center;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+}
+.kana-card .glyph {
+  font-family: var(--kana); font-size: 3.4rem; line-height: 1.1;
+  color: var(--ink); display: block;
+}
+.kana-card .read { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+.kana-card .hint { font-size: .85rem; color: var(--ink-soft); margin-top: .35rem; }
+
+/* ---- Callouts ---- */
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-bg);
+  padding: .9rem 1.1rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+}
+.callout p:last-child { margin-bottom: 0; }
+.callout .tag {
+  font-family: var(--kana); font-size: .7rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+}
+
+/* ---- Source / primary reading ---- */
+.source {
+  margin: 2rem 0; padding: 1rem 1.2rem;
+  border: 1px solid var(--rule); border-radius: 8px; background: #fff;
+}
+.source .tag {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+
+/* ---- Quiz widget (powered by assets/quiz.js) ---- */
+.quiz { margin: 1.5rem 0; }
+.quiz-q {
+  border: 1px solid var(--rule); border-radius: 10px;
+  background: #fff; padding: 1.1rem 1.2rem; margin-bottom: 1rem;
+}
+.quiz-q .prompt { font-size: 1.05rem; margin-bottom: .8rem; }
+.quiz-q .prompt .big { font-family: var(--kana); font-size: 2.4rem; vertical-align: middle; }
+.quiz-choices { display: flex; flex-wrap: wrap; gap: .5rem; }
+.quiz-choices button {
+  font-family: var(--kana); font-size: 1.05rem;
+  min-width: 3.4rem; padding: .5rem .9rem;
+  border: 1px solid var(--rule); border-radius: 8px;
+  background: var(--paper); color: var(--ink); cursor: pointer;
+  transition: transform .05s ease, background .12s ease;
+}
+.quiz-choices button:hover { background: #fff; transform: translateY(-1px); }
+.quiz-choices button.is-correct { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+.quiz-choices button.is-wrong   { background: var(--bad-bg);  border-color: var(--bad);  color: var(--bad);  }
+.quiz-choices button:disabled { cursor: default; opacity: .9; }
+.quiz-fb { margin-top: .7rem; font-size: .92rem; min-height: 1.2em; }
+.quiz-fb.good { color: var(--good); }
+.quiz-fb.bad  { color: var(--bad); }
+.quiz-score {
+  text-align: center; font-weight: 700; margin-top: .5rem;
+  color: var(--ink-soft); font-size: .95rem;
+}
+
+/* ---- Flip card (self-test reveal) ---- */
+.flip-row { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); margin: 1.3rem 0; }
+.flip {
+  border: 1px solid var(--rule); border-radius: 10px; background: #fff;
+  padding: 1rem .6rem; text-align: center; cursor: pointer; user-select: none;
+}
+.flip .face-front { font-family: var(--kana); font-size: 2.6rem; color: var(--ink); }
+.flip .face-back  { font-size: 1.2rem; font-weight: 700; color: var(--accent); display: none; }
+.flip.revealed .face-front { display: none; }
+.flip.revealed .face-back  { display: block; }
+.flip .mini { font-size: .72rem; color: var(--ink-soft); margin-top: .3rem; }
+
+/* ---- Nav between lessons / reference ---- */
+.nav-links {
+  display: flex; flex-wrap: wrap; gap: .6rem; justify-content: space-between;
+  margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .9rem;
+}
+
+/* ---- Reference table (gojuon chart) ---- */
+table.gojuon { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
+table.gojuon th, table.gojuon td {
+  border: 1px solid var(--rule); padding: .55rem .3rem; text-align: center;
+}
+table.gojuon th { font-size: .75rem; color: var(--ink-soft); background: #faf6ee; font-weight: 700; }
+table.gojuon td .g { font-family: var(--kana); font-size: 1.7rem; display: block; }
+table.gojuon td .r { font-size: .7rem; color: var(--ink-soft); }
+table.gojuon td.lit { background: var(--accent-bg); }
+table.gojuon td.empty { background: #f4f1ea; }
+
+/* ---- Pills / footnotes ---- */
+.pill {
+  display: inline-block; font-family: var(--kana); font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .15rem .6rem; border-radius: 999px;
+  background: var(--accent-bg); color: var(--accent);
+}
+hr { border: none; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+small { color: var(--ink-soft); }
+
+/* ---- Print: make reference docs print beautifully ---- */
+@media print {
+  body { background: #fff; padding: 0; font-size: 12pt; }
+  .quiz, .nav-links, .flip { break-inside: avoid; }
+  a { color: var(--ink); border: none; }
+  .no-print { display: none !important; }
+  table.gojuon td.lit { background: #fff; outline: 2px solid var(--accent); }
+}
